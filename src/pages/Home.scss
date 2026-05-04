@@ -981,7 +981,15 @@
     }
 }
 
-.gallery-nav { display: flex; align-items: center; gap: $space-2; }
+.gallery-nav {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    // On mobile the overlay buttons on the strip handle prev/next
+    @include respond(md) {
+        .gal-btn { display: none; }
+    }
+}
 
 .gal-btn {
     width: 40px;
@@ -998,6 +1006,35 @@
     transition: all $transition-fast;
     &:hover { background: $gold-500; border-color: $gold-500; color: $navy-900; }
 }
+
+// Mobile overlay nav buttons on the gallery strip
+.gal-overlay-btn {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba($navy-900, 0.7);
+    border: 1px solid rgba($gold-500, 0.5);
+    color: $gold-400;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.95rem;
+    backdrop-filter: blur(4px);
+    transition: all $transition-fast;
+    -webkit-tap-highlight-color: transparent;
+
+    &:hover, &:active { background: $gold-500; color: $navy-900; border-color: $gold-500; }
+
+    @include respond(md) { display: flex; }
+}
+
+.gal-overlay-prev { left: $space-3; }
+.gal-overlay-next { right: $space-3; }
 
 // ── 8. PORTALS ────────────────────────────────────────────
 .portals-track-wrapper {
@@ -1265,7 +1302,7 @@
     position: relative;
     margin-top: $space-5;
     padding: 0 $space-7;
-    @include respond(sm) { padding: 0 $space-4; }
+    @include respond(md) { padding: 0; } // no button padding needed on mobile
 }
 
 .sf-carousel {
@@ -1276,6 +1313,8 @@
     scrollbar-width: none;
     &::-webkit-scrollbar { display: none; }
     padding-bottom: $space-2;
+    @include respond(md) { gap: $space-3; padding: 0 $space-4 $space-2; scroll-padding-left: $space-4; }
+    @include respond(sm) { padding: 0 $space-3 $space-2; scroll-padding-left: $space-3; }
 }
 
 .sf-embed-card {
@@ -1288,7 +1327,8 @@
     border: 1px solid $gray-200;
     transition: transform $transition-base, box-shadow $transition-base;
     &:hover { transform: translateY(-3px); box-shadow: $shadow-lg; }
-    @include respond(sm) { flex: 0 0 min(300px, calc(100vw - 72px)); }
+    @include respond(md) { flex: 0 0 min(320px, calc(100vw - 32px)); }
+    @include respond(sm) { flex: 0 0 min(300px, calc(100vw - 24px)); }
 }
 
 .sf-embed-header {
@@ -1362,6 +1402,9 @@
     &:hover { background: $gold-500; color: $white; border-color: $gold-500; box-shadow: $shadow-md; }
     &--prev { left: 0; }
     &--next { right: 0; }
+
+    // Hide on mobile — native touch swipe handles navigation
+    @include respond(md) { display: none; }
 }
 
 // ── Custom Twitter / YouTube cards ───────────────────────

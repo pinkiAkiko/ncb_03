@@ -266,10 +266,6 @@
 .hdr-logo-right {
     display: block;
     flex-shrink: 0;
-
-    @include respond(sm) {
-        display: none;
-    }
 }
 
 .hdr-ncb-logo-right {
@@ -281,9 +277,8 @@
         height: 38px;
     }
 
-    @include respond(md) {
-        height: 42px;
-    }
+    @include respond(md) { height: 42px; }
+    @include respond(sm) { height: 34px; }
 }
 
 .hdr-partner-logos {

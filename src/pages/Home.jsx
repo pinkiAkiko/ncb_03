@@ -218,8 +218,27 @@ function Home() {
     const mwtRef = useScrollReveal("is-visible");
     const socialRef = useScrollReveal("is-visible");
     const sfCarouselRef = useRef(null);
-    const scrollSocial = (dir) => sfCarouselRef.current?.scrollBy({ left: dir * 370, behavior: "smooth" });
+    const scrollSocial = (dir) => {
+        const cardWidth = sfCarouselRef.current?.firstElementChild?.offsetWidth || 340;
+        sfCarouselRef.current?.scrollBy({ left: dir * (cardWidth + 16), behavior: "smooth" });
+    };
     const [galleryIdx, setGalleryIdx] = useState(0);
+    const galleryTouchStartX = useRef(null);
+
+    const handleGalleryTouchStart = (e) => {
+        galleryTouchStartX.current = e.touches[0].clientX;
+    };
+    const handleGalleryTouchEnd = (e) => {
+        if (galleryTouchStartX.current === null) return;
+        const diff = galleryTouchStartX.current - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) {
+            setGalleryIdx(i => diff > 0
+                ? (i + 1) % galleryImages.length
+                : (i - 1 + galleryImages.length) % galleryImages.length
+            );
+        }
+        galleryTouchStartX.current = null;
+    };
 
     const goToSlide = useCallback((idx) => {
         if (slideAnimating) return;
@@ -637,7 +656,11 @@ function Home() {
                         </div>
                     </div>
 
-                    <div className="gallery-strip">
+                    <div
+                        className="gallery-strip"
+                        onTouchStart={handleGalleryTouchStart}
+                        onTouchEnd={handleGalleryTouchEnd}
+                    >
                         {galleryImages.map((img, i) => {
                             const total = galleryImages.length;
                             const offset = ((i - galleryIdx) + total) % total;
@@ -653,6 +676,21 @@ function Home() {
                                 </div>
                             );
                         })}
+                        {/* Mobile overlay prev/next */}
+                        <button
+                            className="gal-overlay-btn gal-overlay-prev"
+                            onClick={() => setGalleryIdx(i => (i - 1 + galleryImages.length) % galleryImages.length)}
+                            aria-label="Previous image"
+                        >
+                            <i className="bi bi-chevron-left" />
+                        </button>
+                        <button
+                            className="gal-overlay-btn gal-overlay-next"
+                            onClick={() => setGalleryIdx(i => (i + 1) % galleryImages.length)}
+                            aria-label="Next image"
+                        >
+                            <i className="bi bi-chevron-right" />
+                        </button>
                     </div>
                 </div>
             </section>
