@@ -117,6 +117,33 @@
     }
 }
 
+// ── Mobile helpline strip (visible only on md and below) ──
+.hdr-mobile-helpline {
+    display: none;
+    background: $navy-900;
+    padding: 5px $space-4;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba($white, 0.06);
+
+    @include respond(md) { display: flex; }
+
+    .hdr-mobile-helpline-left {
+        display: flex;
+        align-items: center;
+        gap: $space-2;
+        font-size: 0.7rem;
+        color: $gold-400;
+        font-weight: 600;
+        i { font-size: 0.72rem; }
+    }
+    .hdr-mobile-helpline-right {
+        display: flex;
+        align-items: center;
+        gap: $space-2;
+    }
+}
+
 // ── Branding Row ──────────────────────────────────────────
 .hdr-brand-row {
     background: $navy-800;
@@ -147,6 +174,7 @@
 .hdr-brand-inner {
     @include flex-between;
     gap: $space-5;
+    @include respond(sm) { gap: $space-3; }
 }
 
 .hdr-brand-left {
@@ -337,6 +365,16 @@
     overflow: hidden;
     width: 300px;
     animation: fadeIn 0.2s ease;
+
+    @include respond(sm) {
+        position: fixed;
+        right: $space-4;
+        left: $space-4;
+        top: auto;
+        bottom: $space-6;
+        transform: none;
+        width: auto;
+    }
 
     input {
         flex: 1;

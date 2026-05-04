@@ -176,7 +176,12 @@
     background: $navy-800;
     display: flex;
     flex-direction: column;
-    @include respond(md) { flex-direction: row; overflow-x: auto; }
+    @include respond(md) {
+        flex-direction: row;
+        overflow-x: auto;
+        scrollbar-width: none;
+        &::-webkit-scrollbar { display: none; }
+    }
 }
 
 .rti-sidebar-tab {
@@ -342,6 +347,7 @@
     padding: $space-5 $space-6;
     border-left: 4px solid $gold-500;
     @include respond(md) { flex-direction: column; text-align: center; }
+    @include respond(sm) { padding: $space-4; }
 
     > i { font-size: 2.5rem; color: $gold-400; flex-shrink: 0; }
 

@@ -143,6 +143,19 @@ function Header() {
                 </div>
             </div>
 
+            {/* ── Mobile Helpline Strip (md and below) ─────────── */}
+            <div className="hdr-mobile-helpline">
+                <div className="hdr-mobile-helpline-left">
+                    <i className="bi bi-telephone-fill" />
+                    <a href="tel:1933" style={{ color: "inherit" }}>MANAS Helpline: 1933</a>
+                </div>
+                <div className="hdr-mobile-helpline-right">
+                    <button className="utility-lang-btn" onClick={() => setLang(l => l === "EN" ? "HI" : "EN")} aria-label="Toggle language">
+                        <i className="bi bi-translate" /> {lang === "EN" ? "हिंदी" : "English"}
+                    </button>
+                </div>
+            </div>
+
             {/* ── Branding Row ─────────────────────────────────── */}
             <div className={`hdr-brand-row ${scrolled ? "compact" : ""}`}>
                 <div className="container hdr-brand-inner">

@@ -35,7 +35,17 @@
     i { color: $gold-400; }
 }
 
-.zone-list { list-style: none; padding: 0; }
+.zone-list {
+    list-style: none;
+    padding: 0;
+
+    @include respond(lg) {
+        display: flex;
+        overflow-x: auto;
+        scrollbar-width: none;
+        &::-webkit-scrollbar { display: none; }
+    }
+}
 
 .zone-list-btn {
     display: flex;
@@ -50,11 +60,14 @@
     transition: all $transition-fast;
     text-align: left;
 
+    @include respond(lg) { flex-shrink: 0; min-width: 150px; border-bottom: none; border-right: 1px solid rgba($white, 0.1); }
+
     &.active {
         background: rgba($gold-500, 0.08);
         border-left: 3px solid $gold-500;
         .zlb-dot { background: $gold-500; box-shadow: 0 0 0 3px rgba($gold-500, 0.2); }
         .zlb-name { color: $navy-800; font-weight: 700; }
+        @include respond(lg) { border-left: none; border-bottom: 3px solid $gold-500; }
     }
 
     &:hover:not(.active) { background: $gray-100; }

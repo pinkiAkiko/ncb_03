@@ -7,7 +7,8 @@
     gap: $space-8;
     align-items: center;
     margin-bottom: $space-9;
-    @include respond(md) { grid-template-columns: 1fr; }
+    @include respond(md) { grid-template-columns: 1fr; gap: $space-6; }
+    @include respond(sm) { gap: $space-5; margin-bottom: $space-6; }
 
     p { font-size: 0.9rem; color: $gray-500; line-height: 1.7; margin-bottom: $space-3; }
 }
@@ -92,7 +93,8 @@
     grid-template-columns: 1fr 1fr;
     gap: $space-8;
     align-items: center;
-    @include respond(md) { grid-template-columns: 1fr; }
+    @include respond(md) { grid-template-columns: 1fr; gap: $space-5; }
+    @include respond(sm) { gap: $space-4; }
 }
 
 .motto-img-wrap {

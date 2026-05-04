@@ -45,6 +45,7 @@
     align-items: center;
     gap: $space-4;
     border: 1px solid rgba($gold-500, 0.2);
+    @include respond(sm) { padding: $space-4; }
 
     > i { font-size: 2rem; color: $gold-400; flex-shrink: 0; }
     div { display: flex; flex-direction: column; gap: 2px; }
@@ -61,6 +62,7 @@
     border-radius: $radius-xl;
     padding: $space-6;
     box-shadow: $shadow-sm;
+    @include respond(sm) { padding: $space-4; border-radius: $radius-lg; }
 }
 
 .cf-heading {

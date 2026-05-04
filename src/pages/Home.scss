@@ -5,7 +5,12 @@
 .section-header-row {
     margin-bottom: $space-5;
     &.center { text-align: center; .section-divider { margin-left: auto; margin-right: auto; } }
-    &.between { display: flex; justify-content: space-between; align-items: center; }
+    &.between {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @include respond(sm) { flex-direction: column; align-items: flex-start; gap: $space-3; }
+    }
 }
 
 .col-header-row {
@@ -13,6 +18,7 @@
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: $space-5;
+    @include respond(sm) { flex-direction: column; align-items: flex-start; gap: $space-2; }
 }
 
 .view-all-link {
@@ -118,6 +124,9 @@
     max-height: 660px;
     overflow: hidden;
     background: $navy-900;
+
+    @include respond(md) { min-height: 380px; }
+    @include respond(sm) { height: 55vh; min-height: 300px; }
 }
 
 .hero-slides {
@@ -161,6 +170,7 @@
     flex: 1;
     position: relative;
     min-height: 340px;
+    @include respond(sm) { min-height: 200px; }
 }
 
 .hero-text-item {
@@ -517,6 +527,7 @@
     @include gold-border-left;
     background: rgba($white, 0.04);
     border-radius: 0 $radius-md $radius-md 0;
+    @include respond(sm) { padding: $space-4 $space-4 $space-4 $space-5; }
 }
 
 .dg-quote-icon {
@@ -577,6 +588,7 @@
     gap: $space-4;
     @include respond(xl) { grid-template-columns: repeat(3, 1fr); }
     @include respond(md) { grid-template-columns: repeat(2, 1fr); }
+    @include respond(sm) { grid-template-columns: 1fr 1fr; gap: $space-3; }
 }
 
 .kpi-item {
@@ -661,6 +673,7 @@
     scrollbar-color: $gold-300 transparent;
     &::-webkit-scrollbar { width: 4px; }
     &::-webkit-scrollbar-thumb { background: $gold-300; border-radius: 4px; }
+    @include respond(sm) { height: 300px; }
 }
 
 .news-list { padding: $space-3; }
@@ -823,6 +836,7 @@
     border-top: 3px solid;
     @include card-hover;
     text-decoration: none;
+    @include respond(sm) { padding: $space-4 $space-3; }
 
     $colors: (
         red: ($red-500, rgba($red-500, 0.08), rgba($red-500, 0.1)),
@@ -870,6 +884,8 @@
     position: relative;
     height: 300px;
     overflow: hidden;
+    @include respond(md) { height: 230px; }
+    @include respond(sm) { height: 180px; }
 }
 
 // All items sit at the horizontal & vertical center of the strip,
@@ -910,6 +926,9 @@
         border-color: $gold-500;
         box-shadow: 0 0 0 3px rgba($gold-500, 0.3), $shadow-xl;
         pointer-events: auto;
+
+        @include respond(md) { width: 270px; height: 190px; }
+        @include respond(sm) { width: min(260px, 88vw); height: 160px; }
     }
 
     &.gal-r1 {
@@ -919,6 +938,9 @@
         opacity: 0.72;
         z-index: 4;
         pointer-events: auto;
+
+        @include respond(md) { width: 200px; height: 150px; transform: translate(-50%, -50%) translateX(240px); }
+        @include respond(sm) { opacity: 0; pointer-events: none; }
     }
 
     &.gal-l1 {
@@ -928,6 +950,9 @@
         opacity: 0.72;
         z-index: 4;
         pointer-events: auto;
+
+        @include respond(md) { width: 200px; height: 150px; transform: translate(-50%, -50%) translateX(-240px); }
+        @include respond(sm) { opacity: 0; pointer-events: none; }
     }
 
     &.gal-r2 {
@@ -936,6 +961,8 @@
         transform: translate(-50%, -50%) translateX(660px);
         opacity: 0.38;
         z-index: 3;
+
+        @include respond(md) { opacity: 0; pointer-events: none; }
     }
 
     &.gal-l2 {
@@ -944,6 +971,8 @@
         transform: translate(-50%, -50%) translateX(-660px);
         opacity: 0.38;
         z-index: 3;
+
+        @include respond(md) { opacity: 0; pointer-events: none; }
     }
 
     &:hover:not(.gal-center):not(.gal-hidden) {
@@ -1203,6 +1232,7 @@
     color: rgba($white, 0.7);
 
     i { color: $gold-400; }
+    @include respond(sm) { padding: $space-3 $space-4; }
 }
 
 .mwt-tip-number {
@@ -1235,7 +1265,7 @@
     position: relative;
     margin-top: $space-5;
     padding: 0 $space-7;
-    @include respond(sm) { padding: 0 $space-5; }
+    @include respond(sm) { padding: 0 $space-4; }
 }
 
 .sf-carousel {
@@ -1258,6 +1288,7 @@
     border: 1px solid $gray-200;
     transition: transform $transition-base, box-shadow $transition-base;
     &:hover { transform: translateY(-3px); box-shadow: $shadow-lg; }
+    @include respond(sm) { flex: 0 0 min(300px, calc(100vw - 72px)); }
 }
 
 .sf-embed-header {
